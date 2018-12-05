@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.cemiseguranca.cms.hpe.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="IntegracaoService" targetNamespace="http://ws.cemiseguranca.cms.hpe.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.cemiseguranca.cms.hpe.com/" elementFormDefault="unqualified" targetNamespace="http://ws.cemiseguranca.cms.hpe.com/" version="1.0">
+
+  <xs:element name="createBlockOrderUnboundService" type="tns:createBlockOrderUnboundService"/>
+
+  <xs:element name="createBlockOrderUnboundServiceResponse" type="tns:createBlockOrderUnboundServiceResponse"/>
+
+  <xs:element name="getStatusIMEI" type="tns:getStatusIMEI"/>
+
+  <xs:element name="getStatusIMEIResponse" type="tns:getStatusIMEIResponse"/>
+
+  <xs:element name="getStatusService" type="tns:getStatusService"/>
+
+  <xs:element name="getStatusServiceResponse" type="tns:getStatusServiceResponse"/>
+
+  <xs:element name="unlockBlockOrderService" type="tns:unlockBlockOrderService"/>
+
+  <xs:element name="unlockBlockOrderServiceResponse" type="tns:unlockBlockOrderServiceResponse"/>
+
+  <xs:complexType name="getStatusIMEI">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:imeiStatusIn"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="imeiStatusIn">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="imei" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getStatusIMEIResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:imeiStatusOut"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="imeiStatusOut">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="entityName" type="xs:string"/>
+      <xs:element minOccurs="0" name="imei" type="xs:string"/>
+      <xs:element minOccurs="0" name="lockDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="returnedMessage" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getStatusService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:cemisspSearchInCompany"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cemisspSearchInCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="protocolNumber" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getStatusServiceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:cemisspSearchOutCompany"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cemisspSearchOutCompany">
+    <xs:complexContent>
+      <xs:extension base="tns:cemisspWSOut">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="blockReason" type="xs:string"/>
+          <xs:element minOccurs="0" name="blockType" type="xs:string"/>
+          <xs:element minOccurs="0" name="contactPhone" type="xs:string"/>
+          <xs:element minOccurs="0" name="lastUpdate" type="xs:string"/>
+          <xs:element minOccurs="0" name="occurCity" type="xs:string"/>
+          <xs:element minOccurs="0" name="occurDate" type="xs:string"/>
+          <xs:element minOccurs="0" name="occurState" type="xs:string"/>
+          <xs:element minOccurs="0" name="orderStatus" type="xs:string"/>
+          <xs:element minOccurs="0" name="ownerDocumentNumber" type="xs:string"/>
+          <xs:element minOccurs="0" name="ownerName" type="xs:string"/>
+          <xs:element minOccurs="0" name="policeDept" type="xs:string"/>
+          <xs:element minOccurs="0" name="policeId" type="xs:string"/>
+          <xs:element minOccurs="0" name="protocolNumber" type="xs:string"/>
+          <xs:element minOccurs="0" name="requesterDocumentNumber" type="xs:string"/>
+          <xs:element minOccurs="0" name="requesterName" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="cemisspWSOut">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="processDetail" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="unlockBlockOrderService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:unlockWSInCompany"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="unlockWSInCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="imei" type="xs:string"/>
+      <xs:element minOccurs="0" name="massiveData" type="xs:base64Binary"/>
+      <xs:element minOccurs="0" name="protocolNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="unlockReasonDetail" type="xs:string"/>
+      <xs:element minOccurs="0" name="unlockReasonId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="unlockBlockOrderServiceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:blockOrderWSOut"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="blockOrderWSOut">
+    <xs:complexContent>
+      <xs:extension base="tns:cemisspWSOut">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="createBlockOrderUnboundService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:blockOrderUnboundWSInCompany"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="blockOrderUnboundWSInCompany">
+    <xs:complexContent>
+      <xs:extension base="tns:blockOrderWSCompany">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="invoice" type="xs:string"/>
+          <xs:element minOccurs="0" name="letter" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="requesterDocumentTypeId" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="blockOrderWSCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="blockImeiNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="blockReason" type="xs:string"/>
+      <xs:element minOccurs="0" name="blockTypeId" type="xs:string"/>
+      <xs:element minOccurs="0" name="contactPhone" type="xs:string"/>
+      <xs:element minOccurs="0" name="deviceModel" type="xs:string"/>
+      <xs:element minOccurs="0" name="manufacturer" type="xs:string"/>
+      <xs:element minOccurs="0" name="massiveData" type="xs:base64Binary"/>
+      <xs:element minOccurs="0" name="occurCity" type="xs:string"/>
+      <xs:element minOccurs="0" name="occurDate" type="xs:string"/>
+      <xs:element minOccurs="0" name="occurState" type="xs:string"/>
+      <xs:element minOccurs="0" name="ownerDocumentNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="policeDept" type="xs:string"/>
+      <xs:element minOccurs="0" name="policeId" type="xs:string"/>
+      <xs:element minOccurs="0" name="requesterDocumentNumber" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createBlockOrderUnboundServiceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:blockOrderWSOut"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getStatusService">
+    <wsdl:part element="tns:getStatusService" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unlockBlockOrderService">
+    <wsdl:part element="tns:unlockBlockOrderService" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createBlockOrderUnboundService">
+    <wsdl:part element="tns:createBlockOrderUnboundService" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatusIMEI">
+    <wsdl:part element="tns:getStatusIMEI" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createBlockOrderUnboundServiceResponse">
+    <wsdl:part element="tns:createBlockOrderUnboundServiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unlockBlockOrderServiceResponse">
+    <wsdl:part element="tns:unlockBlockOrderServiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatusIMEIResponse">
+    <wsdl:part element="tns:getStatusIMEIResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatusServiceResponse">
+    <wsdl:part element="tns:getStatusServiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CelularLegal">
+    <wsdl:operation name="getStatusIMEI">
+      <wsdl:input message="tns:getStatusIMEI" name="getStatusIMEI">
+    </wsdl:input>
+      <wsdl:output message="tns:getStatusIMEIResponse" name="getStatusIMEIResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatusService">
+      <wsdl:input message="tns:getStatusService" name="getStatusService">
+    </wsdl:input>
+      <wsdl:output message="tns:getStatusServiceResponse" name="getStatusServiceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unlockBlockOrderService">
+      <wsdl:input message="tns:unlockBlockOrderService" name="unlockBlockOrderService">
+    </wsdl:input>
+      <wsdl:output message="tns:unlockBlockOrderServiceResponse" name="unlockBlockOrderServiceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createBlockOrderUnboundService">
+      <wsdl:input message="tns:createBlockOrderUnboundService" name="createBlockOrderUnboundService">
+    </wsdl:input>
+      <wsdl:output message="tns:createBlockOrderUnboundServiceResponse" name="createBlockOrderUnboundServiceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IntegracaoServiceSoapBinding" type="tns:CelularLegal">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getStatusIMEI">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getStatusIMEI">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatusIMEIResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatusService">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getStatusService">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatusServiceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createBlockOrderUnboundService">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createBlockOrderUnboundService">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createBlockOrderUnboundServiceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unlockBlockOrderService">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="unlockBlockOrderService">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="unlockBlockOrderServiceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IntegracaoService">
+    <wsdl:port binding="tns:IntegracaoServiceSoapBinding" name="IntegracaoPort">
+      <soap:address location="https://cemissp.com.br/cemiseguranca/Integracao"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
